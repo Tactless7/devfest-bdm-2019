@@ -3,10 +3,10 @@
     class="display"
     ref="game"
     tabindex="0"
-    v-on:keydown.up="sacha.y -= 40"
-    v-on:keydown.down="sacha.y += 40"
-    v-on:keydown.left="sacha.x -= 40"
-    v-on:keydown.right="sacha.x += 40"
+    v-on:keydown.up="move('up')"
+    v-on:keydown.down="move('down')"
+    v-on:keydown.left="move('left')"
+    v-on:keydown.right="move('right')"
   >
     <Scene />
     <Grid />
@@ -41,6 +41,26 @@ export default {
     startGame() {
       this.sacha.display = true;
       this.$refs.game.focus();
+    },
+    move(orientation) {
+      switch (orientation) {
+        case 'up':
+          if (this.$store.getters.canWalk(this.sacha.x, this.sacha.y - 40))
+            this.sacha.y -= 40;
+          break;
+        case 'down':
+          if (this.$store.getters.canWalk(this.sacha.x, this.sacha.y + 40))
+            this.sacha.y += 40;
+          break;
+        case 'right':
+          if (this.$store.getters.canWalk(this.sacha.x + 40, this.sacha.y))
+            this.sacha.x += 40;
+          break;
+        case 'left':
+          if (this.$store.getters.canWalk(this.sacha.x - 40, this.sacha.y))
+            this.sacha.x -= 40;
+          break;
+      }
     },
   },
   created() {
