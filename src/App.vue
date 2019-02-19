@@ -9,6 +9,7 @@
     v-on:keydown.right="sacha.x += 40"
   >
     <Scene />
+    <Grid />
     <Sacha v-if="sacha.display" v-bind:x="sacha.x" v-bind:y="sacha.y" />
     <GreetingsMessage v-on:greetingsFinished="startGame()" />
   </div>
@@ -17,12 +18,14 @@
 <script>
 import Sacha from '@/components/Sacha.vue';
 import Scene from '@/components/Scene.vue';
+import Grid from '@/components/Grid.vue';
 import GreetingsMessage from '@/components/GreetingsMessage.vue';
 
 export default {
   components: {
     Sacha,
     Scene,
+    Grid,
     GreetingsMessage,
   },
   data() {

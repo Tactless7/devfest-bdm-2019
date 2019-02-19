@@ -3,6 +3,7 @@
     <p>{{ greetings }}</p>
 
     <input
+      ref="name"
       type="text"
       v-model="firstName"
       v-on:keydown.enter="firstNameSubmit()"
@@ -21,6 +22,9 @@ export default {
       displayGreetings: true,
     };
   },
+  mounted() {
+    this.$refs.name.focus();
+  },
   methods: {
     firstNameSubmit() {
       this.displayGreetings = false;
@@ -36,6 +40,7 @@ export default {
   bottom: 0;
   left: 0;
   background: #fff;
+  z-index: 2;
   margin: 20px;
   padding: 20px;
 }
