@@ -43,6 +43,9 @@ export default {
       this.$refs.game.focus();
     },
   },
+  created() {
+    this.$store.dispatch('getEnvironment');
+  },
 };
 </script>
 
