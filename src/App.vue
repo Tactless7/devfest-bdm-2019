@@ -1,8 +1,8 @@
 <template>
   <div class="display">
     <Scene />
-    <Sacha v-if="displaySacha" x="200" y="300" />
-    <GreetingsMessage v-on:greetingsFinished="displaySacha = true" />
+    <Sacha v-if="sacha.display" v-bind:x="sacha.x" v-bind:y="sacha.y" />
+    <GreetingsMessage v-on:greetingsFinished="sacha.display = true" />
   </div>
 </template>
 
@@ -19,7 +19,11 @@ export default {
   },
   data() {
     return {
-      displaySacha: false,
+      sacha: {
+        x: 400,
+        y: 150,
+        display: false,
+      },
     };
   },
 };
