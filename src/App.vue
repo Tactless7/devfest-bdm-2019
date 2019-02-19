@@ -1,6 +1,7 @@
 <template>
   <div class="display">
-    <img src="@/assets/pallet_town.png" />
+    <img src="@/assets/pallet_town.png" class="pallet-town" />
+    <Sacha />
 
     <div class="message">
       <p>{{ greetings }}</p>
@@ -17,7 +18,12 @@
 </template>
 
 <script>
+import Sacha from '@/components/Sacha.vue';
+
 export default {
+  components: {
+    Sacha,
+  },
   data() {
     return {
       greetings: 'Hé ! Bonjour, quel est ton nom ?',
@@ -34,7 +40,7 @@ export default {
   src: url(/fonts/pokemon-font.woff);
 }
 
-img {
+.pallet-town {
   width: 800px;
   margin-left: 2px;
   image-rendering: pixelated;
@@ -42,6 +48,7 @@ img {
 
 .display {
   position: relative;
+  display: inline-block;
   font-family: pokemon;
 }
 
