@@ -13,12 +13,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      x: 200,
-      y: 300,
-    };
-  },
+  props: ['x', 'y'],
 };
 </script>
 
