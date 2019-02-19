@@ -31,8 +31,8 @@ export default {
   data() {
     return {
       sacha: {
-        x: 400,
-        y: 150,
+        x: 10 * 40 - 20 + 2,
+        y: 4 * 40 - 20,
         display: false,
       },
     };
