@@ -10,7 +10,7 @@
   >
     <Scene />
     <Grid />
-    <Sacha v-if="sacha.display" v-bind:x="sacha.x" v-bind:y="sacha.y" />
+    <Sacha v-if="sacha.display" />
     <GreetingsMessage v-on:greetingsFinished="startGame()" />
   </div>
 </template>
@@ -31,8 +31,6 @@ export default {
   data() {
     return {
       sacha: {
-        x: 10 * 40 - 20 + 2,
-        y: 4 * 40 - 20,
         display: false,
       },
     };
@@ -43,24 +41,7 @@ export default {
       this.$refs.game.focus();
     },
     move(orientation) {
-      switch (orientation) {
-        case 'up':
-          if (this.$store.getters.canWalk(this.sacha.x, this.sacha.y - 40))
-            this.sacha.y -= 40;
-          break;
-        case 'down':
-          if (this.$store.getters.canWalk(this.sacha.x, this.sacha.y + 40))
-            this.sacha.y += 40;
-          break;
-        case 'right':
-          if (this.$store.getters.canWalk(this.sacha.x + 40, this.sacha.y))
-            this.sacha.x += 40;
-          break;
-        case 'left':
-          if (this.$store.getters.canWalk(this.sacha.x - 40, this.sacha.y))
-            this.sacha.x -= 40;
-          break;
-      }
+      this.$store.dispatch('moveSacha', orientation);
     },
   },
   created() {

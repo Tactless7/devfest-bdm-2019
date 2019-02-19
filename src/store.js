@@ -5,14 +5,24 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    sacha: {
+      position: {
+        x: 9,
+        y: 3,
+      },
+    },
     environment: [],
   },
 
   getters: {
     canWalk: state => (x, y) => {
-      let xSquare = (x + 20 - 2) / 40;
-      let ySquare = (y + 20) / 40;
-      return state.environment[ySquare - 1][xSquare - 1].canWalk;
+      return state.environment[y][x].canWalk;
+    },
+    sachaPixelPosition: state => {
+      let y = (state.sacha.position.y + 1) * 40 - 20;
+      let x = (state.sacha.position.x + 1) * 40 - 20 + 2;
+
+      return { x, y };
     },
   },
 
@@ -32,10 +42,32 @@ export default new Vuex.Store({
       commit('SET_ENVIRONMENT', environment);
       return environment;
     },
+    moveSacha({ commit, state, getters }, orientation) {
+      let position = state.sacha.position;
+      switch (orientation) {
+        case 'up':
+          if (getters.canWalk(position.x, position.y - 1)) position.y--;
+          break;
+        case 'down':
+          if (getters.canWalk(position.x, position.y + 1)) position.y++;
+          break;
+        case 'right':
+          if (getters.canWalk(position.x + 1, position.y)) position.x++;
+          break;
+        case 'left':
+          if (getters.canWalk(position.x - 1, position.y)) position.x--;
+          break;
+      }
+
+      commit('UPDATE_POSITION', position);
+    },
   },
   mutations: {
     SET_ENVIRONMENT(state, environment) {
       Vue.set(state, 'environment', environment);
+    },
+    UPDATE_POSITION(state, position) {
+      Vue.set(state.sacha, 'position', position);
     },
   },
 });
