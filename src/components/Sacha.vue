@@ -5,9 +5,7 @@
       left: `${position.x}px`,
     }"
   >
-    <img
-      v-bind:src="`/img/sacha-${orientation}.png`"
-    />
+    <img v-bind:src="`/img/sacha-${orientation}.png`" />
   </div>
 </template>
 
