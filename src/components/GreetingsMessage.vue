@@ -5,7 +5,7 @@
     <input
       type="text"
       v-model="firstName"
-      v-on:keydown.enter="displayGreetings = false"
+      v-on:keydown.enter="firstNameSubmit()"
     />
 
     <p v-if="firstName">Ah ! Je me souviens ! Bonjour {{ firstName }}</p>
@@ -20,6 +20,12 @@ export default {
       firstName: '',
       displayGreetings: true,
     };
+  },
+  methods: {
+    firstNameSubmit() {
+      this.displayGreetings = false;
+      this.$emit('greetingsFinished');
+    },
   },
 };
 </script>
