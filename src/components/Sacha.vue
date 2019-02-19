@@ -6,7 +6,7 @@
     }"
   >
     <img
-      src="https://github.com/jamescastells/pokemonHTML/raw/master/sprites/down.png"
+      v-bind:src="`/img/sacha-${orientation}.png`"
     />
   </div>
 </template>
@@ -16,6 +16,9 @@ export default {
   computed: {
     position() {
       return this.$store.getters.sachaPixelPosition;
+    },
+    orientation() {
+      return this.$store.getters.getOrientation;
     },
   },
 };
