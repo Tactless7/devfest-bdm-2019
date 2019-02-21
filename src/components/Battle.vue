@@ -21,6 +21,10 @@
     </div>
   </div>
 
+  <div class="message">
+    BULBIZARRE contre SALAMECHE
+  </div>
+
 </div>
 </template>
 
@@ -88,6 +92,18 @@ export default {
 .enemy .pokemon-infos {
   top: 0%;
   left: 5%;
+}
+
+.message {
+  font-size: 158%;
+  position: absolute;
+  width: 90%;
+  height: 18%;
+  bottom: -15px;
+  left: -15px;
+  background: #f8f8f8;
+  border:black solid 4px;
+  border-radius: 10px;
 }
 
 .sacha div {
