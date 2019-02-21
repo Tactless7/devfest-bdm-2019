@@ -12,10 +12,17 @@ export default new Vuex.Store({
         y: 3,
       },
       orientation: 'down',
+      pokemon: {
+        hp: 3
+      },
+    },
+    enemy: {
+      pokemon: {
+        hp: 6
+      } 
     },
     environment: [],
   },
-
   getters: {
     canWalk: state => (x, y) => {
       return state.environment[y][x].canWalk;
@@ -30,10 +37,12 @@ export default new Vuex.Store({
       return state.sacha.orientation;
     },
     typeOfCurrentSquare: state => {
-      if (state.environment.length !== 0) {
-        const x = state.sacha.position.x
-        const y = state.sacha.position.y
-        return state.environment[y][x].type  
+      const x = state.sacha.position.x
+      const y = state.sacha.position.y
+      if (state.environment[y] === undefined) {
+        return ''
+      } else {
+        return state.environment[y][x].type
       }
     },
   },
@@ -43,8 +52,8 @@ export default new Vuex.Store({
       commit('SET_ENVIRONMENT', environment);
     },
     moveSacha({ commit, state, getters }, orientation) {
-      commit('CHANGE_ORIENTATION', orientation);
       let position = state.sacha.position;
+      commit('CHANGE_ORIENTATION', orientation);
       switch (orientation) {
         case 'up':
           if (getters.canWalk(position.x, position.y - 1)) position.y--;
@@ -61,7 +70,7 @@ export default new Vuex.Store({
       }
 
       commit('UPDATE_POSITION', position);
-    },
+    }
   },
   mutations: {
     SET_ENVIRONMENT(state, environment) {

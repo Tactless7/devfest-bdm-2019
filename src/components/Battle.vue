@@ -33,12 +33,14 @@ export default {
     HpBar,
     PokemonHpZone
   },
-  data() {
-    return {
-      sachaPokemonHp: 7,
-      enemyPokemonHp: 2
-    } 
-  }
+  computed: {
+    enemyPokemonHp() {
+      return this.$store.state.enemy.pokemon.hp
+    },
+    sachaPokemonHp() {
+      return this.$store.state.sacha.pokemon.hp
+    },
+  },
 };
 </script>
 
