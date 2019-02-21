@@ -34,6 +34,14 @@
       SALAMECHE utilise {{ sachaMove }}!
     </div>
 
+    <div v-if="step === 'display enemy ko'">
+      BULBIZARRE ennemi est KO!
+    </div>
+
+    <div v-if="step === 'display pokemon XP'">
+      SALAMECHE a gagné 83 points EXP.!
+    </div>
+
     <div v-if="step === 'display enemy move'">
       BULBIZARRE ennemi utilise {{ enemyMove }}!
   </div>
@@ -70,6 +78,17 @@ export default {
       return this.$store.state.sacha.pokemon.hp;
     },
   },
+  watch: {
+    async enemyPokemonHp(hp) {
+      if (hp === 0) {
+        await this.setStepAndWait('display enemy ko');
+        await delay(1500);
+        await this.setStepAndWait('display pokemon XP');
+        await delay(1500);
+        this.step = ''
+      }
+    }
+  },
   methods: {
     async setStepAndWait(step) {
       this.step = step;
@@ -87,8 +106,10 @@ export default {
     },
     async selectSachaMove(move) {
       await this.resolveSachaMove(move);
-      await this.pickEnemyMoveAndResolve();
-      this.step = 'ask for next move';
+      if (this.enemyPokemonHp !== 0) {
+        await this.pickEnemyMoveAndResolve();
+        this.step = 'ask for next move';
+      } 
     }
   },
 };
