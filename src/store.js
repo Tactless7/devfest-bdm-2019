@@ -90,6 +90,9 @@ export default new Vuex.Store({
       let newHp = state.enemy.pokemon.hp - amount;
       state.enemy.pokemon.hp = newHp < 0 ? 0 : newHp;
     },
+    RESTORE_SACHA_POKEMON_HP(state) {
+      state.sacha.pokemon.hp = 10;
+    },
     RESTORE_ENEMY_POKEMON_HP(state) {
       state.enemy.pokemon.hp = 10;
     },

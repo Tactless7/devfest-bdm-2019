@@ -86,6 +86,13 @@ export default {
         this.$store.commit('RESTORE_ENEMY_POKEMON_HP');
         this.$emit('endOfBattle');
       }
+    },
+    async sachaPokemonHp(hp) {
+      if (hp === 0) {
+        await this.setStepAndWait('display sacha ko');
+        this.$store.commit('RESTORE_SACHA_POKEMON_HP');
+        this.$emit('endOfBattle');
+      }
     }
   },
   methods: {
