@@ -13,12 +13,12 @@ export default new Vuex.Store({
       },
       orientation: 'down',
       pokemon: {
-        hp: 3
+        hp: 10
       },
     },
     enemy: {
       pokemon: {
-        hp: 6
+        hp: 10
       } 
     },
     environment: [],
@@ -81,6 +81,10 @@ export default new Vuex.Store({
     },
     CHANGE_ORIENTATION(state, orientation) {
       Vue.set(state.sacha, 'orientation', orientation);
+    },
+    DECREASE_ENEMY_POKEMON_HP(state, amount) {
+      let newHp = state.enemy.pokemon.hp - amount;
+      state.enemy.pokemon.hp = newHp < 0 ? 0 : newHp;
     },
   },
 });

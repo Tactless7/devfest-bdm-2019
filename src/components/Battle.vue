@@ -78,6 +78,7 @@ export default {
     async selectSachaMove(move) {
       this.sachaMove = move;
       await this.setStepAndWait('display sacha move');
+      this.$store.commit('DECREASE_ENEMY_POKEMON_HP', 4);
 
       this.enemyMove = pick(['FOUET LIANE', 'CHARGE']);
       await this.setStepAndWait('display enemy move');
