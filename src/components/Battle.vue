@@ -3,9 +3,15 @@
 
   <div class="enemy">
     <img class="pokemon-image" src="@/assets/bulbizarre.png">
+    <div class="pokemon-infos">
+      <div> BULBIZARRE </div>
+    </div>
   </div>
   <div class="sacha">
     <img class="pokemon-image" src="@/assets/salameche_back.png">
+    <div class="pokemon-infos">
+      <div> SALAMECHE </div>
+    </div>
   </div>
 
 </div>
@@ -39,6 +45,23 @@
 .enemy .pokemon-image {
   right: 3%;
   top: 0;
+}
+
+.pokemon-infos {
+  position: absolute;
+  font-size: 180%;
+  color: black;
+}
+
+.sacha .pokemon-infos {
+  top: 40%;
+  left: 45%;
+  width: 53%;
+}
+
+.enemy .pokemon-infos {
+  top: 0%;
+  left: 5%;
 }
 
 </style>
