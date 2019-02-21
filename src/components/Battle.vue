@@ -34,6 +34,10 @@
       SALAMECHE utilise {{ sachaMove }}!
     </div>
 
+    <div v-if="step === 'display enemy move'">
+      BULBIZARRE ennemi utilise {{ enemyMove }}!
+  </div>
+
   </div>
 
 </div>
@@ -44,6 +48,7 @@ import HpBar from './HpBar.vue';
 import PokemonHpZone from './PokemonHpZone.vue';
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration));
+const pick = array => array[Math.floor(Math.random() * array.length)];
 
 export default {
   components: {
@@ -53,6 +58,7 @@ export default {
   data() {
     return {
       sachaMove: '',
+      enemyMove: '',
       step: 'ask for next move'
     };
   },
@@ -67,9 +73,14 @@ export default {
   methods: {
     async selectSachaMove(move) {
       this.sachaMove = move;
-      this.step = 'display sacha move'
-      await delay(2000)
-      this.step = ''
+      this.step = 'display sacha move';
+      await delay(2000);
+
+      this.enemyMove = pick(['FOUET LIANE', 'CHARGE']);
+      this.step = 'display enemy move';
+      await delay(2000);
+
+      this.step = 'ask for next move';
     }
   },
 };
