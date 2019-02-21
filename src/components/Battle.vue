@@ -64,10 +64,10 @@ export default {
   },
   computed: {
     enemyPokemonHp() {
-      return this.$store.state.enemy.pokemon.hp
+      return this.$store.state.enemy.pokemon.hp;
     },
     sachaPokemonHp() {
-      return this.$store.state.sacha.pokemon.hp
+      return this.$store.state.sacha.pokemon.hp;
     },
   },
   methods: {
@@ -75,16 +75,20 @@ export default {
       this.step = step;
       await delay(500);
     },
-    async selectSachaMove(move) {
+    async resolveSachaMove(move) {
       this.sachaMove = move;
       await this.setStepAndWait('display sacha move');
       this.$store.commit('DECREASE_ENEMY_POKEMON_HP', 4);
-
+    },
+    async pickEnemyMoveAndResolve() {
       this.enemyMove = pick(['FOUET LIANE', 'CHARGE']);
       await this.setStepAndWait('display enemy move');
       this.$store.commit('DECREASE_SACHA_POKEMON_HP', 3);
-
-      this.step = 'ask for next move'
+    },
+    async selectSachaMove(move) {
+      await this.resolveSachaMove(move);
+      await this.pickEnemyMoveAndResolve();
+      this.step = 'ask for next move';
     }
   },
 };
