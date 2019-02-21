@@ -43,6 +43,8 @@
 import HpBar from './HpBar.vue';
 import PokemonHpZone from './PokemonHpZone.vue';
 
+const delay = duration => new Promise(resolve => setTimeout(resolve, duration));
+
 export default {
   components: {
     HpBar,
@@ -63,9 +65,11 @@ export default {
     },
   },
   methods: {
-    selectSachaMove(move) {
+    async selectSachaMove(move) {
       this.sachaMove = move;
       this.step = 'display sacha move'
+      await delay(2000)
+      this.step = ''
     }
   },
 };
