@@ -82,6 +82,7 @@ export default {
 
       this.enemyMove = pick(['FOUET LIANE', 'CHARGE']);
       await this.setStepAndWait('display enemy move');
+      this.$store.commit('DECREASE_SACHA_POKEMON_HP', 3);
 
       this.step = 'ask for next move'
     }
