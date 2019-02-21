@@ -9,7 +9,6 @@
     v-on:keydown.right="move('right')"
   >
     <Scene />
-    <Grid />
     <Sacha v-if="sacha.display" />
     <GreetingsMessage v-on:greetingsFinished="startGame()" />
   </div>
@@ -34,6 +33,18 @@ export default {
         display: false,
       },
     };
+  },
+  computed: {
+    typeOfCurrentSquare() {
+      return this.$store.getters.typeOfCurrentSquare;
+    }
+  },
+  watch: {
+    typeOfCurrentSquare(type) {
+      if (type === 'grass') {
+        alert('Battle!');
+      }
+    }
   },
   methods: {
     startGame() {

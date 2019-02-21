@@ -29,6 +29,13 @@ export default new Vuex.Store({
     getOrientation: state => {
       return state.sacha.orientation;
     },
+    typeOfCurrentSquare: state => {
+      if (state.environment.length !== 0) {
+        const x = state.sacha.position.x
+        const y = state.sacha.position.y
+        return state.environment[y][x].type  
+      }
+    },
   },
 
   actions: {
