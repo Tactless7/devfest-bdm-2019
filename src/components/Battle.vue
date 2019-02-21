@@ -6,7 +6,7 @@
     <div class="pokemon-infos">
       <div> BULBIZARRE </div>
       <PokemonHpZone who="enemy">
-        <HpBar hp="4" />
+        <HpBar v-bind:hp="enemyPokemonHp" />
       </PokemonHpZone>
     </div>
   </div>
@@ -15,8 +15,8 @@
     <div class="pokemon-infos">
       <div> SALAMECHE </div>
       <PokemonHpZone who="sacha">
-        <HpBar hp="8" />
-        <div> 8/ 10 </div>
+        <HpBar v-bind:hp="sachaPokemonHp" />
+        <div> {{sachaPokemonHp}}/ 10 </div>
       </PokemonHpZone>
     </div>
   </div>
@@ -32,7 +32,13 @@ export default {
   components: {
     HpBar,
     PokemonHpZone
-  }  
+  },
+  data() {
+    return {
+      sachaPokemonHp: 7,
+      enemyPokemonHp: 2
+    } 
+  }
 };
 </script>
 
