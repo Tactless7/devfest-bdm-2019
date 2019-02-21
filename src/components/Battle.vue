@@ -71,16 +71,18 @@ export default {
     },
   },
   methods: {
+    async setStepAndWait(step) {
+      this.step = step;
+      await delay(500);
+    },
     async selectSachaMove(move) {
       this.sachaMove = move;
-      this.step = 'display sacha move';
-      await delay(2000);
+      await this.setStepAndWait('display sacha move');
 
       this.enemyMove = pick(['FOUET LIANE', 'CHARGE']);
-      this.step = 'display enemy move';
-      await delay(2000);
+      await this.setStepAndWait('display enemy move');
 
-      this.step = 'ask for next move';
+      this.step = 'ask for next move'
     }
   },
 };
