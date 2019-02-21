@@ -82,10 +82,8 @@ export default {
     async enemyPokemonHp(hp) {
       if (hp === 0) {
         await this.setStepAndWait('display enemy ko');
-        await delay(1500);
         await this.setStepAndWait('display pokemon XP');
-        await delay(1500);
-        this.step = ''
+        this.$emit('endOfBattle');
       }
     }
   },

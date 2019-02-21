@@ -11,7 +11,7 @@
     <Scene />
     <Sacha v-if="sacha.display" />
     <div class="scene-shadow" v-if="play.mode === 'battle'">
-      <Battle />
+      <Battle v-on:endOfBattle="play.mode = 'move'"/>
     </div>
     <GreetingsMessage v-on:greetingsFinished="startGame()" />
   </div>
