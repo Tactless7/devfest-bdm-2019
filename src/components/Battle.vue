@@ -1,8 +1,12 @@
 <template>
 <div class="root">
 
-  <img class="pokemon-image" src="@/assets/bulbizarre.png">
-  <img class="pokemon-image" src="@/assets/salameche_back.png">
+  <div class="enemy">
+    <img class="pokemon-image" src="@/assets/bulbizarre.png">
+  </div>
+  <div class="sacha">
+    <img class="pokemon-image" src="@/assets/salameche_back.png">
+  </div>
 
 </div>
 </template>
@@ -23,7 +27,18 @@
 
 .pokemon-image {
   image-rendering: pixelated;
+  position: absolute;
   width: 35%;
+}
+
+.sacha .pokemon-image  {
+  left: 4%;
+  bottom: 30%;
+}
+
+.enemy .pokemon-image {
+  right: 3%;
+  top: 0;
 }
 
 </style>
