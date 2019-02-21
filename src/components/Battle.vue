@@ -23,14 +23,16 @@
 
   <div class="message">
 
-    <div class="move-options">
+    <div class="move-options" v-if="step === 'ask for next move'">
       <div class="move" v-on:click="selectSachaMove('GRIFFE')"> GRIFFE </div>
       <div class="move" v-on:click="selectSachaMove('FLAMMECHE')"> FLAMMECHE </div>
       <div> - </div>
       <div> - </div>
     </div>
 
-    <div> {{ sachaMove }} </div>
+    <div v-if="step === 'display sacha move'">
+      SALAMECHE utilise {{ sachaMove }}!
+    </div>
 
   </div>
 
@@ -48,7 +50,8 @@ export default {
   },
   data() {
     return {
-      sachaMove: ''
+      sachaMove: '',
+      step: 'ask for next move'
     };
   },
   computed: {
@@ -62,6 +65,7 @@ export default {
   methods: {
     selectSachaMove(move) {
       this.sachaMove = move;
+      this.step = 'display sacha move'
     }
   },
 };
