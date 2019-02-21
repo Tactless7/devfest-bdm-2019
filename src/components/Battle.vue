@@ -83,6 +83,7 @@ export default {
       if (hp === 0) {
         await this.setStepAndWait('display enemy ko');
         await this.setStepAndWait('display pokemon XP');
+        this.$store.commit('RESTORE_ENEMY_POKEMON_HP');
         this.$emit('endOfBattle');
       }
     }
