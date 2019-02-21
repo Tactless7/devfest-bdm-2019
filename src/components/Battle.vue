@@ -5,20 +5,38 @@
     <img class="pokemon-image" src="@/assets/bulbizarre.png">
     <div class="pokemon-infos">
       <div> BULBIZARRE </div>
+      <PokemonHpZone who="enemy">
+        <HpBar hp="4" />
+      </PokemonHpZone>
     </div>
   </div>
   <div class="sacha">
     <img class="pokemon-image" src="@/assets/salameche_back.png">
     <div class="pokemon-infos">
       <div> SALAMECHE </div>
+      <PokemonHpZone who="sacha">
+        <HpBar hp="8" />
+        <div> 8/ 10 </div>
+      </PokemonHpZone>
     </div>
   </div>
 
 </div>
 </template>
 
-<style scoped>
+<script>
+import HpBar from './HpBar.vue';
+import PokemonHpZone from './PokemonHpZone.vue';
 
+export default {
+  components: {
+    HpBar,
+    PokemonHpZone
+  }  
+};
+</script>
+
+<style scoped>
 .root {
   position: absolute;
   width: 70%;
@@ -64,4 +82,7 @@
   left: 5%;
 }
 
+.sacha div {
+  float: right;
+} 
 </style>
