@@ -57,15 +57,12 @@ export default new Vuex.Store({
           }
           break;
         case 'down':
-          console.log(getters.checkType(position.x, position.y + 1));
           if (getters.canWalk(position.x, position.y + 1)) position.y++;
           break;
         case 'right':
-          console.log(getters.checkType(position.x + 1, position.y));
           if (getters.canWalk(position.x + 1, position.y)) position.x++;
           break;
         case 'left':
-          console.log(getters.checkType(position.x - 1, position.y));
           if (getters.canWalk(position.x - 1, position.y)) position.x--;
           break;
       }
