@@ -9,8 +9,10 @@
     v-on:keydown.right="move('right')"
   >
     <Scene />
-    <Grid />
     <Sacha v-if="sacha.display" />
+    <div class="scene-shadow" v-if="play.mode === 'battle'">
+      <Battle v-on:endOfBattle="play.mode = 'move'"/>
+    </div>
     <GreetingsMessage v-on:greetingsFinished="startGame()" />
   </div>
 </template>
@@ -20,6 +22,7 @@ import Sacha from '@/components/Sacha.vue';
 import Scene from '@/components/Scene.vue';
 import Grid from '@/components/Grid.vue';
 import GreetingsMessage from '@/components/GreetingsMessage.vue';
+import Battle from '@/components/Battle.vue';
 
 export default {
   components: {
@@ -27,13 +30,29 @@ export default {
     Scene,
     Grid,
     GreetingsMessage,
+    Battle,
   },
   data() {
     return {
       sacha: {
         display: false,
       },
+      play: {
+        mode: 'move'
+      },
     };
+  },
+  computed: {
+    typeOfCurrentSquare() {
+      return this.$store.getters.typeOfCurrentSquare;
+    }
+  },
+  watch: {
+    typeOfCurrentSquare(type) {
+      if (type === 'grass') {
+        this.play.mode = 'battle';
+      }
+    }
   },
   methods: {
     startGame() {
@@ -61,4 +80,13 @@ export default {
   display: inline-block;
   font-family: pokemon;
 }
+
+.scene-shadow {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+} 
 </style>
