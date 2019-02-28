@@ -67,7 +67,7 @@ export default new Vuex.Store({
       switch (orientation) {
         case 'up':
           if (getters.canWalk(position.x, position.y - 1)) position.y--;
-          if(getters.checkType(position.x, position.y - 1)) {
+          if(getters.checkType(position.x, position.y - 1) && getters.checkDoorName(position.x, position.y - 1) !== undefined) {
             commit('CHANGE_MAP', getters.checkDoorName(position.x, position.y - 1), position = {x: 3, y:7});
             commit('SET_ENVIRONMENT', red_house);
           }
