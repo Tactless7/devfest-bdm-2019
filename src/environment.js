@@ -396,3 +396,86 @@ export const environment = [
     { canWalk: false, type: 'wall' },
   ],
 ];
+
+export const red_house = [
+  [
+    {canWalk: false, type: 'bookshelf'},
+    {canWalk: false, type: 'bookshelf'},
+    {canWalk: false, type: 'wall'},
+    {canWalk: false, type: 'window'},
+    {canWalk: false, type: 'wall'},
+    {canWalk: false, type: 'window'},
+    {canWalk: false, type: 'wall'},
+    {canWalk: false, type: 'window'}
+  ],
+  [
+    {canWalk: false, type: 'bookshelf'},
+    {canWalk: false, type: 'bookshelf'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: false, type: 'television'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'stairs'}
+  ],
+  [
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+  ],
+  [
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+  ],
+  [
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'footstole'},
+    {canWalk: false, type: 'table'},
+    {canWalk: false, type: 'table'},
+    {canWalk: true, type: 'footstole'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'}
+  ],
+  [
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'footstole'},
+    {canWalk: false, type: 'table'},
+    {canWalk: false, type: 'table'},
+    {canWalk: true, type: 'footstole'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'}
+  ],
+  [
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+  ],
+  [
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'carpet'},
+    {canWalk: true, type: 'carpet'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+    {canWalk: true, type: 'floor'},
+  ],
+];
