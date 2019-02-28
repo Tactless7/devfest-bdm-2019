@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { environment } from './environment';
+import { environment, red_house } from './environment';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    map:"pallet_town",
     sacha: {
       position: {
         x: 9,
@@ -20,6 +21,12 @@ export default new Vuex.Store({
     canWalk: state => (x, y) => {
       return state.environment[y][x].canWalk;
     },
+    checkType: state => (x, y) => {
+      return state.environment[y][x].type;
+    },
+    checkDoorName: state => (x, y) => {
+      return state.environment[y][x].name;
+    },
     sachaPixelPosition: state => {
       let y = (state.sacha.position.y + 1) * 40 - 20;
       let x = (state.sacha.position.x + 1) * 40 - 20 + 2;
@@ -29,6 +36,9 @@ export default new Vuex.Store({
     getOrientation: state => {
       return state.sacha.orientation;
     },
+    getMap: state => {
+      return state.map;
+    }
   },
 
   actions: {
@@ -41,14 +51,21 @@ export default new Vuex.Store({
       switch (orientation) {
         case 'up':
           if (getters.canWalk(position.x, position.y - 1)) position.y--;
+          if(getters.checkType(position.x, position.y - 1)) {
+            commit('CHANGE_MAP', getters.checkDoorName(position.x, position.y - 1), position = {x: 3, y:7});
+            commit('SET_ENVIRONMENT', red_house);
+          }
           break;
         case 'down':
+          console.log(getters.checkType(position.x, position.y + 1));
           if (getters.canWalk(position.x, position.y + 1)) position.y++;
           break;
         case 'right':
+          console.log(getters.checkType(position.x + 1, position.y));
           if (getters.canWalk(position.x + 1, position.y)) position.x++;
           break;
         case 'left':
+          console.log(getters.checkType(position.x - 1, position.y));
           if (getters.canWalk(position.x - 1, position.y)) position.x--;
           break;
       }
@@ -66,5 +83,11 @@ export default new Vuex.Store({
     CHANGE_ORIENTATION(state, orientation) {
       Vue.set(state.sacha, 'orientation', orientation);
     },
+    CHANGE_MAP(state, map, position){
+      if(map !== undefined){
+        Vue.set(state, 'map', map);
+        Vue.set(state, 'position', position);
+      }
+    }
   },
 });
