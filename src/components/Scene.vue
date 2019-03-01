@@ -26,4 +26,10 @@ export default {
   margin-top: 1px;
   image-rendering: pixelated;
 }
+.red_bedroom{
+  width: 320px;
+  margin-left: 3px;
+  margin-top: 1px;
+  image-rendering: pixelated;
+}
 </style>
