@@ -416,7 +416,7 @@ export const environment = {
       {canWalk: true, type: 'floor'},
       {canWalk: true, type: 'floor'},
       {canWalk: true, type: 'floor'},
-      {canWalk: true, type: 'stairs'}
+      {canWalk: true, type: 'stairs', name: "red_bedroom"}
     ],
     [
       {canWalk: true, type: 'floor'},
