@@ -71,29 +71,26 @@ export default new Vuex.Store({
       switch (orientation) {
         case 'up':
           if (getters.canWalk(position.x, position.y - 1)) position.y--;
-          if(getters.checkType(position.x, position.y - 1) && getters.checkWarpName(position.x, position.y - 1) !== undefined) {
-            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y - 1), position = {x: 3, y:7});
+          if(getters.checkType(position.x, position.y) && getters.checkWarpName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y), position = {x: position.x-2, y: position.y+2});
           }
           break;
         case 'down':
           if (getters.canWalk(position.x, position.y + 1)) position.y++;
-          if(getters.checkType(position.x, position.y) && getters.checkWarpName(position.x, position.y) !== undefined) {
-            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y), position = {x: 5, y:6});
+          if(getters.checkWarpName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y), position = {x: position.x + 2, y: position.y - 1});
           }
           break;
         case 'right':
           if (getters.canWalk(position.x + 1, position.y)) position.x++;
-          if(getters.checkType(position.x + 1, position.y) && getters.checkWarpName(position.x + 1, position.y) !== undefined) {
-            console.log(getters.checkWarpName(position.x + 1, position.y));
-            //commit('CHANGE_MAP', getters.checkWarpName(position.x + 1, position.y), position = {x: 3, y:7});
+          if(getters.checkWarpName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y), position = {x: position.x, y: position.y});
           }
           break;
         case 'left':
           if (getters.canWalk(position.x - 1, position.y)) position.x--;
-          if(getters.checkType(position.x - 1, position.y) && getters.checkWarpName(position.x - 1, position.y) !== undefined) {
-            console.log(getters.checkWarpName(position.x -1, position.y ));
-
-            //commit('CHANGE_MAP', getters.checkWarpName(position.x - 1, position.y), position = {x: 3, y:7});
+          if(getters.checkWarpName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x - 1, position.y), position = {x: position.x, y: position.y});
           }
           break;
       }
