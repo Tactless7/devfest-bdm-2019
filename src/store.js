@@ -36,7 +36,7 @@ export default new Vuex.Store({
       return state.environment[y][x].type;
     },
     checkWarpName: state => (x, y) => {
-      return state.environment[y][x].name;
+      return state.environment[y][x].warp;
     },
     sachaPixelPosition: state => {
       let y = (state.sacha.position.y + 1) * 40 - 20;
@@ -71,26 +71,26 @@ export default new Vuex.Store({
       switch (orientation) {
         case 'up':
           if (getters.canWalk(position.x, position.y - 1)) position.y--;
-          if(getters.checkType(position.x, position.y) && getters.checkWarpName(position.x, position.y) !== undefined) {
-            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y), position = {x: position.x-2, y: position.y+2});
+          if(getters.checkWarpName(position.x, position.y).name !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y));
           }
           break;
         case 'down':
           if (getters.canWalk(position.x, position.y + 1)) position.y++;
           if(getters.checkWarpName(position.x, position.y) !== undefined) {
-            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y), position = {x: position.x + 2, y: position.y - 1});
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y));
           }
           break;
         case 'right':
           if (getters.canWalk(position.x + 1, position.y)) position.x++;
           if(getters.checkWarpName(position.x, position.y) !== undefined) {
-            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y), position = {x: position.x, y: position.y});
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y));
           }
           break;
         case 'left':
           if (getters.canWalk(position.x - 1, position.y)) position.x--;
           if(getters.checkWarpName(position.x, position.y) !== undefined) {
-            commit('CHANGE_MAP', getters.checkWarpName(position.x - 1, position.y), position = {x: position.x, y: position.y});
+            commit('CHANGE_MAP', getters.checkWarpName(position.x - 1, position.y));
           }
           break;
       }
@@ -122,11 +122,12 @@ export default new Vuex.Store({
     RESTORE_ENEMY_POKEMON_HP(state) {
       state.enemy.pokemon.hp = 10;
     },
-    CHANGE_MAP(state, map, position){
+    CHANGE_MAP(state, map){
       if(map !== undefined){
-        Vue.set(state, 'environment', environment[map]);
-        Vue.set(state, 'map', {name:map, gridWidth: environment[map][0].length, gridHeight: environment[map].length});
-        Vue.set(state, 'position', position);
+        Vue.set(state, 'environment', environment[map.name]);
+        Vue.set(state, 'map', {name:map.name, gridWidth: environment[map.name][0].length, gridHeight: environment[map.name].length});
+        state.sacha.position.x = map.x;
+        state.sacha.position.y = map.y;
       }
     }
   },
