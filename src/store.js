@@ -35,7 +35,7 @@ export default new Vuex.Store({
     checkType: state => (x, y) => {
       return state.environment[y][x].type;
     },
-    checkDoorName: state => (x, y) => {
+    checkWarpName: state => (x, y) => {
       return state.environment[y][x].name;
     },
     sachaPixelPosition: state => {
@@ -71,29 +71,29 @@ export default new Vuex.Store({
       switch (orientation) {
         case 'up':
           if (getters.canWalk(position.x, position.y - 1)) position.y--;
-          if(getters.checkType(position.x, position.y - 1) && getters.checkDoorName(position.x, position.y - 1) !== undefined) {
-            commit('CHANGE_MAP', getters.checkDoorName(position.x, position.y - 1), position = {x: 3, y:7});
+          if(getters.checkType(position.x, position.y - 1) && getters.checkWarpName(position.x, position.y - 1) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y - 1), position = {x: 3, y:7});
           }
           break;
         case 'down':
           if (getters.canWalk(position.x, position.y + 1)) position.y++;
-          if(getters.checkType(position.x, position.y) && getters.checkDoorName(position.x, position.y) !== undefined) {
-            commit('CHANGE_MAP', getters.checkDoorName(position.x, position.y), position = {x: 5, y:6});
+          if(getters.checkType(position.x, position.y) && getters.checkWarpName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y), position = {x: 5, y:6});
           }
           break;
         case 'right':
           if (getters.canWalk(position.x + 1, position.y)) position.x++;
-          if(getters.checkType(position.x + 1, position.y) && getters.checkDoorName(position.x + 1, position.y) !== undefined) {
-            console.log(getters.checkDoorName(position.x + 1, position.y));
-            //commit('CHANGE_MAP', getters.checkDoorName(position.x + 1, position.y), position = {x: 3, y:7});
+          if(getters.checkType(position.x + 1, position.y) && getters.checkWarpName(position.x + 1, position.y) !== undefined) {
+            console.log(getters.checkWarpName(position.x + 1, position.y));
+            //commit('CHANGE_MAP', getters.checkWarpName(position.x + 1, position.y), position = {x: 3, y:7});
           }
           break;
         case 'left':
           if (getters.canWalk(position.x - 1, position.y)) position.x--;
-          if(getters.checkType(position.x - 1, position.y) && getters.checkDoorName(position.x - 1, position.y) !== undefined) {
-            console.log(getters.checkDoorName(position.x -1, position.y ));
+          if(getters.checkType(position.x - 1, position.y) && getters.checkWarpName(position.x - 1, position.y) !== undefined) {
+            console.log(getters.checkWarpName(position.x -1, position.y ));
 
-            //commit('CHANGE_MAP', getters.checkDoorName(position.x - 1, position.y), position = {x: 3, y:7});
+            //commit('CHANGE_MAP', getters.checkWarpName(position.x - 1, position.y), position = {x: 3, y:7});
           }
           break;
       }
