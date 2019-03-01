@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="`img/${map}.png`" :class="map" />
+    <img :src="`img/${map.name}.png`" :class="map.name" />
   </div>
 </template>
 
