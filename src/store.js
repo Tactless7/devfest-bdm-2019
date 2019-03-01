@@ -1,12 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { environment, red_house } from './environment';
+import { environment } from './environment';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    map:"pallet_town",
+    map:{
+      name:"pallet_town",
+      gridWidth: "20",
+      gridHeight: "18"
+    },
     sacha: {
       position: {
         x: 9,
@@ -59,7 +63,7 @@ export default new Vuex.Store({
 
   actions: {
     getEnvironment({ commit }) {
-      commit('SET_ENVIRONMENT', environment);
+      commit('SET_ENVIRONMENT', environment.pallet_town);
     },
     moveSacha({ commit, state, getters }, orientation) {
       let position = state.sacha.position;
@@ -69,17 +73,28 @@ export default new Vuex.Store({
           if (getters.canWalk(position.x, position.y - 1)) position.y--;
           if(getters.checkType(position.x, position.y - 1) && getters.checkDoorName(position.x, position.y - 1) !== undefined) {
             commit('CHANGE_MAP', getters.checkDoorName(position.x, position.y - 1), position = {x: 3, y:7});
-            commit('SET_ENVIRONMENT', red_house);
           }
           break;
         case 'down':
           if (getters.canWalk(position.x, position.y + 1)) position.y++;
+          if(getters.checkType(position.x, position.y) && getters.checkDoorName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkDoorName(position.x, position.y), position = {x: 5, y:6});
+          }
           break;
         case 'right':
           if (getters.canWalk(position.x + 1, position.y)) position.x++;
+          if(getters.checkType(position.x + 1, position.y) && getters.checkDoorName(position.x + 1, position.y) !== undefined) {
+            console.log(getters.checkDoorName(position.x + 1, position.y));
+            //commit('CHANGE_MAP', getters.checkDoorName(position.x + 1, position.y), position = {x: 3, y:7});
+          }
           break;
         case 'left':
           if (getters.canWalk(position.x - 1, position.y)) position.x--;
+          if(getters.checkType(position.x - 1, position.y) && getters.checkDoorName(position.x - 1, position.y) !== undefined) {
+            console.log(getters.checkDoorName(position.x -1, position.y ));
+
+            //commit('CHANGE_MAP', getters.checkDoorName(position.x - 1, position.y), position = {x: 3, y:7});
+          }
           break;
       }
 
@@ -112,7 +127,8 @@ export default new Vuex.Store({
     },
     CHANGE_MAP(state, map, position){
       if(map !== undefined){
-        Vue.set(state, 'map', map);
+        Vue.set(state, 'environment', environment[map]);
+        Vue.set(state, 'map', {name:map, gridWidth: environment[map][0].length, gridHeight: environment[map].length});
         Vue.set(state, 'position', position);
       }
     }
