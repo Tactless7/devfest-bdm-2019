@@ -20,13 +20,13 @@ export default {
   margin-left: 2px;
   image-rendering: pixelated;
 }
-.red_house{
-  width: 320px;
-  margin-left: 3px;
-  margin-top: 1px;
-  image-rendering: pixelated;
+.laboratory{
+    width: 400px;
+    margin-left: 3px;
+    margin-top: 1px;
+    image-rendering: pixelated;
 }
-.red_bedroom{
+.red_house, .red_bedroom, .blue_house{
   width: 320px;
   margin-left: 3px;
   margin-top: 1px;
