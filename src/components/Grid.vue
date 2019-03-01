@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
-    <div class="row" v-for="y in gridHeight" :key="`row${y}`">
-      <div class="square" v-for="x in gridWidth" :key="`square${x}-${y}`">
+    <div class="row" v-for="y in map.gridHeight" :key="`row${y}`">
+      <div class="square" v-for="x in map.gridWidth" :key="`square${x}-${y}`">
         {{ y }} - {{ x }}
       </div>
     </div>
@@ -11,12 +11,11 @@
 <script>
 export default {
   name: 'Grid',
-  data() {
-    return {
-      gridWidth: 20,
-      gridHeight: 18,
-    };
-  },
+  computed:{
+    map(){
+      return this.$store.getters.getMap;
+    }
+  }
 };
 </script>
 
