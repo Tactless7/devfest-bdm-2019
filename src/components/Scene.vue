@@ -1,17 +1,35 @@
 <template>
   <div>
-    <img src="@/assets/pallet_town.png" class="pallet-town" />
+    <img :src="`img/${map.name}.png`" :class="map.name" />
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  computed:{
+    map(){
+      return this.$store.getters.getMap;
+    }
+  }
+};
 </script>
 
 <style scoped>
-.pallet-town {
+.pallet_town {
   width: 800px;
   margin-left: 2px;
+  image-rendering: pixelated;
+}
+.laboratory{
+    width: 400px;
+    margin-left: 3px;
+    margin-top: 1px;
+    image-rendering: pixelated;
+}
+.red_house, .red_bedroom, .blue_house{
+  width: 320px;
+  margin-left: 3px;
+  margin-top: 1px;
   image-rendering: pixelated;
 }
 </style>

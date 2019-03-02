@@ -6,6 +6,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    map:{
+      name:"pallet_town",
+      gridWidth: "20",
+      gridHeight: "18"
+    },
     sacha: {
       position: {
         x: 9,
@@ -27,6 +32,12 @@ export default new Vuex.Store({
     canWalk: state => (x, y) => {
       return state.environment[y][x].canWalk;
     },
+    checkType: state => (x, y) => {
+      return state.environment[y][x].type;
+    },
+    checkWarpName: state => (x, y) => {
+      return state.environment[y][x].warp;
+    },
     sachaPixelPosition: state => {
       let y = (state.sacha.position.y + 1) * 40 - 20;
       let x = (state.sacha.position.x + 1) * 40 - 20 + 2;
@@ -45,11 +56,14 @@ export default new Vuex.Store({
         return state.environment[y][x].type
       }
     },
+    getMap: state => {
+      return state.map;
+    }
   },
 
   actions: {
     getEnvironment({ commit }) {
-      commit('SET_ENVIRONMENT', environment);
+      commit('SET_ENVIRONMENT', environment.pallet_town);
     },
     moveSacha({ commit, state, getters }, orientation) {
       let position = state.sacha.position;
@@ -57,15 +71,27 @@ export default new Vuex.Store({
       switch (orientation) {
         case 'up':
           if (getters.canWalk(position.x, position.y - 1)) position.y--;
+          if(getters.checkWarpName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y));
+          }
           break;
         case 'down':
           if (getters.canWalk(position.x, position.y + 1)) position.y++;
+          if(getters.checkWarpName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y));
+          }
           break;
         case 'right':
           if (getters.canWalk(position.x + 1, position.y)) position.x++;
+          if(getters.checkWarpName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y));
+          }
           break;
         case 'left':
           if (getters.canWalk(position.x - 1, position.y)) position.x--;
+          if(getters.checkWarpName(position.x, position.y) !== undefined) {
+            commit('CHANGE_MAP', getters.checkWarpName(position.x - 1, position.y));
+          }
           break;
       }
 
@@ -96,5 +122,11 @@ export default new Vuex.Store({
     RESTORE_ENEMY_POKEMON_HP(state) {
       state.enemy.pokemon.hp = 10;
     },
+    CHANGE_MAP(state, map){
+      Vue.set(state, 'environment', environment[map.name]);
+      Vue.set(state, 'map', {name:map.name, gridWidth: environment[map.name][0].length, gridHeight: environment[map.name].length});
+      state.sacha.position.x = map.x;
+      state.sacha.position.y = map.y;
+    }
   },
 });
