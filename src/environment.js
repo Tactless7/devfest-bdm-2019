@@ -569,7 +569,7 @@ export const environment = {
             {canWalk: false, type: 'picture'},
             {canWalk: false, type: 'wall'},
             {canWalk: false, type: 'window'},
-            {canWalk: false, type: 'bookshelf'},
+            {canWalk: false, type: 'wall'},
             {canWalk: false, type: 'bookshelf'}
         ],
         [
@@ -579,7 +579,7 @@ export const environment = {
             {canWalk: true, type: 'floor'},
             {canWalk: true, type: 'floor'},
             {canWalk: true, type: 'floor'},
-            {canWalk: false, type: 'bookshelf'},
+            {canWalk: true, type: 'floor'},
             {canWalk: false, type: 'bookshelf'}
         ],
         [
