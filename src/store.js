@@ -123,12 +123,10 @@ export default new Vuex.Store({
       state.enemy.pokemon.hp = 10;
     },
     CHANGE_MAP(state, map){
-      if(map !== undefined){
-        Vue.set(state, 'environment', environment[map.name]);
-        Vue.set(state, 'map', {name:map.name, gridWidth: environment[map.name][0].length, gridHeight: environment[map.name].length});
-        state.sacha.position.x = map.x;
-        state.sacha.position.y = map.y;
-      }
+      Vue.set(state, 'environment', environment[map.name]);
+      Vue.set(state, 'map', {name:map.name, gridWidth: environment[map.name][0].length, gridHeight: environment[map.name].length});
+      state.sacha.position.x = map.x;
+      state.sacha.position.y = map.y;
     }
   },
 });
