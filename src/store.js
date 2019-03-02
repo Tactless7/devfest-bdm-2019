@@ -71,7 +71,7 @@ export default new Vuex.Store({
       switch (orientation) {
         case 'up':
           if (getters.canWalk(position.x, position.y - 1)) position.y--;
-          if(getters.checkWarpName(position.x, position.y).name !== undefined) {
+          if(getters.checkWarpName(position.x, position.y) !== undefined) {
             commit('CHANGE_MAP', getters.checkWarpName(position.x, position.y));
           }
           break;
